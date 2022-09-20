@@ -2,16 +2,16 @@
   <div class="admin">
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' } "><i class="el-icon-s-promotion"></i>后台管理</el-breadcrumb-item>
-      <el-breadcrumb-item>添加相册</el-breadcrumb-item>
+      <el-breadcrumb-item><el-button @click="test(1)">添加相册</el-button></el-breadcrumb-item>
     </el-breadcrumb>
-    <div>
+    <div v-if="name==1">
       <PhotoAdd/>
     </div>
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' } "><i class="el-icon-s-promotion"></i>后台管理</el-breadcrumb-item>
-      <el-breadcrumb-item>添加品牌</el-breadcrumb-item>
+      <el-breadcrumb-item><el-button @click="test(2)">添加品牌</el-button></el-breadcrumb-item>
     </el-breadcrumb>
-    <div>
+    <div v-if="name==2">
       <BrandAdd/>
     </div>
   </div>
@@ -25,6 +25,16 @@ export default {
   components: {
     PhotoAdd,
     BrandAdd,
+  },
+  data() {
+    return {
+      name: ''
+    };
+  },
+  methods: {
+    test(i) {
+      this.name = i;
+    }
   }
 
 }
