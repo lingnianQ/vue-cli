@@ -89,6 +89,8 @@ export default {
 }
 
 .el-switch {
-
+  float: left;
+  margin-top: 10px;
 }
+
 </style>
