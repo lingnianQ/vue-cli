@@ -7,7 +7,18 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        component: HomeView
+        component: HomeView,
+        children: [
+            {
+                path: '/xx',
+                component: () => import('@/components/BrandAdd')
+            },
+            {
+                path: '/xxx',
+                component: () => import('@/components/PhotoAdd')
+            },
+        ]
+
     },
     {
         path: '/about',
