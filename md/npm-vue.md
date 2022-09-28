@@ -1,4 +1,4 @@
-- `npm,node.js`查看版本
+- `npm,node.js`查看版本--先装npm
 
 ~~~cmd
 node -v
@@ -16,6 +16,17 @@ npm uninstall -g @vue/cli
 
 ~~~cmd
 vue -V
+~~~
+
+- # 先安装 `axios`
+~~~cmd
+npm i axios -S
+~~~
+
+# - 再安装`elementUI`用于美化页面
+
+~~~cmd
+npm i element-ui -S
 ~~~
 
 - `vue`创建项目
@@ -93,11 +104,7 @@ export default {
 - `package.json`：项目的配置文件，例如配置了此项目的依赖项等
 - `package-lock.json`：锁定的配置文件，不需要，也不建议手动修改此文件中的任何内容
 
-# - 安装`elementUI`
 
-~~~cmd
-npm i element-ui -S
-~~~
 
 安装完成后，需要在`src/main.js`中添加配置：
 
@@ -116,11 +123,6 @@ Vue.use(ElementUI);
   },
 ~~~
 
-- # 安装 `axios`
-
-~~~cmd
-npm i axios -S
-~~~
 
 
 
