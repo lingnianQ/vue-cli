@@ -1,4 +1,0 @@
-2022-09-23 16:26:27.278  INFO 11092 --- [main] com.syt.product.ProductApplication       : Starting ProductApplication using Java 1.8.0_332 on lingnian with PID 11092 (E:\cs\product\target\classes started by sytsn in D:\vue-cli)
-2022-09-23 16:26:27.280  INFO 11092 --- [main] com.syt.product.ProductApplication       : No active profile set, falling back to default profiles: default
-2022-09-23 16:26:27.737  INFO 11092 --- [main] c.s.product.config.MybatisConfiguration  : 创建配置类--MybatisConfiguration
-2022-09-23 16:26:28.109  INFO 11092 --- [main] com.syt.product.ProductApplication       : Started ProductApplication in 1.121 seconds (JVM running for 1.956)
