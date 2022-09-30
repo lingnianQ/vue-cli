@@ -12,13 +12,14 @@ npm install -g @vue/cli
 npm uninstall -g @vue/cli
 ~~~
 
-- 查看`vue`版本 
+- 查看`vue`版本
 
 ~~~cmd
 vue -V
 ~~~
 
 - # 先安装 `axios`
+
 ~~~cmd
 npm i axios -S
 ~~~
@@ -27,6 +28,12 @@ npm i axios -S
 
 ~~~cmd
 npm i element-ui -S
+~~~
+
+# 解决form-data参数问题
+
+~~~cmd
+npm i qs -S
 ~~~
 
 - `vue`创建项目
@@ -46,16 +53,16 @@ In package.json
 
 ~~~js
 const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  }
+    {
+        path: '/',
+        name: 'home',
+        component: HomeView
+    },
+    {
+        path: '/about',
+        name: 'about',
+        component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    }
 ]
 ~~~
 
@@ -104,8 +111,6 @@ export default {
 - `package.json`：项目的配置文件，例如配置了此项目的依赖项等
 - `package-lock.json`：锁定的配置文件，不需要，也不建议手动修改此文件中的任何内容
 
-
-
 安装完成后，需要在`src/main.js`中添加配置：
 
 ```javascript
@@ -119,8 +124,8 @@ Vue.use(ElementUI);
 
 ~~~json
   "dependencies": {
-    "element-ui": "^2.15.10",
-  },
+"element-ui": "^2.15.10",
+},
 ~~~
 
 
