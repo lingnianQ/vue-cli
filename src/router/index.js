@@ -10,13 +10,17 @@ const routes = [
         component: HomeView,
         children: [
             {
-                path: '/xx',
+                path: '/sys-admin/temp/brand/add-new',
                 component: () => import('@/components/BrandAdd')
             },
             {
-                path: '/xxx',
+                path: '/sys-admin/temp/album/add-new',
                 component: () => import('@/components/PhotoAdd')
             },
+            {
+                path: '/sys-admin/temp/album/list',
+                component: () => import('../views/sys-admin/temp/AlbumListView.vue')
+            }
         ]
 
     },

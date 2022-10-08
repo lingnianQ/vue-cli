@@ -26,7 +26,7 @@
                 <i class="el-icon-s-tools"></i>
                 <span>临时页面</span>
               </template>
-              <el-menu-item index="/xx">
+              <el-menu-item index="/sys-admin/temp/brand/add-new">
                 <i class="el-icon-circle-plus"></i>
                 <span slot="title">添加品牌</span>
               </el-menu-item>
