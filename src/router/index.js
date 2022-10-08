@@ -20,7 +20,11 @@ const routes = [
             {
                 path: '/sys-admin/temp/album/list',
                 component: () => import('../views/sys-admin/temp/AlbumListView.vue')
-            }
+            },
+            {
+                path: '/sys-admin/temp/brand/list',
+                component: () => import('../views/sys-admin/temp/BrandListView')
+            },
         ]
 
     },

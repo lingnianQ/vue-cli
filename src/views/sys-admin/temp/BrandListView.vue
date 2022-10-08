@@ -5,34 +5,75 @@
         <i class="el-icon-s-promotion"></i>后台管理
       </el-breadcrumb-item>
       <el-breadcrumb-item>
-        相册列表
+        品牌列表
       </el-breadcrumb-item>
     </el-breadcrumb>
     <el-divider></el-divider>
 
     <el-table
-        :data="albumData"
+        :data="brandData"
         border
         style="width: 100%">
       <el-table-column
           type="index"
-          label="ID"
+          label="品牌ID"
           width="180">
       </el-table-column>
       <el-table-column
           prop="name"
-          label="相册名称"
+          label="品牌名称"
+          width="180">
+      </el-table-column>
+      <el-table-column
+          prop="pinyin"
+          label="品牌名称的拼音"
+          width="180">
+      </el-table-column>
+      <el-table-column
+          prop="logo"
+          label="品牌logo的url"
           width="180">
       </el-table-column>
       <el-table-column
           prop="description"
-          label="相册简介"
+          label="品牌简介"
+          width="180">
+      </el-table-column>
+      <el-table-column
+          prop="keywords"
+          label="品牌关键词"
           width="180">
       </el-table-column>
       <el-table-column
           prop="sort"
           label="自定义排序序号">
       </el-table-column>
+      <el-table-column
+          prop="sales"
+          label="品牌销量"
+          width="180">
+      </el-table-column>
+      <el-table-column
+          prop="productCount"
+          label="商品种类数量总和"
+          width="180">
+      </el-table-column>
+      <el-table-column
+          prop="commentCount"
+          label="买家评论数量总和"
+          width="180">
+      </el-table-column>
+      <el-table-column
+          prop="positiveCommentCount"
+          label="买家好评数量总和"
+          width="180">
+      </el-table-column>
+      <el-table-column
+          prop="enable"
+          label="是否启用"
+          width="180">
+      </el-table-column>
+
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button type="primary" icon="el-icon-edit" size="mini" circle
@@ -51,39 +92,32 @@
 import axios from "axios";
 
 export default {
-  description: "AlbumListView",
+  description: "BrandListView",
   data() {
     return {
-      albumData: [
-        {
-          id: '',
-          name: '2016-05-02',
-          description: '王小虎',
-          sort: '上海市普陀区金沙江路 1518 弄'
-        },
-      ]
+      brandData: []
     }
   },
 
   methods: {
     loadAlbumList() {
-      console.log("loadAlbumList....");
-      let url = 'http://127.0.0.1:8081/albums';
+      console.log("loadBrandList....");
+      let url = 'http://127.0.0.1:8081/brand';
       this.axios.post(url).then((res) => {
         console.log(res.data);
         if (res.data.state == 20000) {
-          this.$message.success(res.data.message);
-          this.albumData = res.data.data;
+          // this.$message.success(res.data.message);
+          this.brandData = res.data.data;
         }
 
       })
     },
 
-    handleEdit(album) {
+    handleEdit(brand) {
 
     },
-    handleDelete(album) {
-      let url = 'http://127.0.0.1:8081/albums/delById/' + album.id;
+    handleDelete(brand) {
+      let url = 'http://127.0.0.1:8081/brand/delById/' + brand.id;
       this.axios.get(url).then((res) => {
         if (res.data.state == 20000) {
           this.$message.success('删除成功');
