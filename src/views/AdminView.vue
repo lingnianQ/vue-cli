@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import PhotoAdd from "@/components/PhotoAdd";
+import PhotoAdd from "@/components/AlbumAdd";
 import BrandAdd from "@/components/BrandAdd";
 
 export default {

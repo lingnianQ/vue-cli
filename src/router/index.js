@@ -15,7 +15,11 @@ const routes = [
             },
             {
                 path: '/sys-admin/temp/album/add-new',
-                component: () => import('@/components/PhotoAdd')
+                component: () => import('@/components/AlbumAdd')
+            },
+            {
+                path: '/sys-admin/temp/admin/list',
+                component: () => import('../views/sys-admin/temp/AdminListView.vue')
             },
             {
                 path: '/sys-admin/temp/album/list',

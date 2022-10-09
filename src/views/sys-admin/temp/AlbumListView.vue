@@ -33,12 +33,13 @@
           prop="sort"
           label="自定义排序序号">
       </el-table-column>
+
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button type="primary" icon="el-icon-edit" size="mini" circle
                      @click="handleEdit(scope.row)"></el-button>
           <el-button type="danger" icon="el-icon-delete" size="mini" circle
-                     @click="handleDelete(scope.row)"></el-button>
+                     @click="openDeleteConfirm(scope.$index,scope.row)"></el-button>
 
         </template>
       </el-table-column>
@@ -66,6 +67,34 @@ export default {
   },
 
   methods: {
+    openDeleteConfirm(i, album) {
+      let title = '提示';
+      let message = '此操作将永久删除【' + album.name + '】相册，是否继续？';
+      this.$confirm(message, title, {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.handleDelete(i, album);
+      }).catch(() => {
+      });
+    },
+
+    handleEdit(album) {
+
+    },
+    handleDelete(i, album) {
+      let url = 'http://127.0.0.1:8081/albums/delById/' + album.id;
+      this.axios.get(url).then((res) => {
+        if (res.data.state == 20000) {
+          // console.log(i)
+          this.albumData.splice(i, 1)
+          this.$message.success('删除成功');
+          // location.reload();
+        }
+      })
+    },
+
     loadAlbumList() {
       console.log("loadAlbumList....");
       let url = 'http://127.0.0.1:8081/albums';
@@ -74,20 +103,6 @@ export default {
         if (res.data.state == 20000) {
           this.$message.success(res.data.message);
           this.albumData = res.data.data;
-        }
-
-      })
-    },
-
-    handleEdit(album) {
-
-    },
-    handleDelete(album) {
-      let url = 'http://127.0.0.1:8081/albums/delById/' + album.id;
-      this.axios.get(url).then((res) => {
-        if (res.data.state == 20000) {
-          this.$message.success('删除成功');
-          location.reload();
         }
 
       })

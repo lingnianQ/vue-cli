@@ -46,7 +46,8 @@
       </el-table-column>
       <el-table-column
           prop="sort"
-          label="自定义排序序号">
+          label="自定义排序序号"
+          width="50">
       </el-table-column>
       <el-table-column
           prop="sales"
@@ -79,7 +80,7 @@
           <el-button type="primary" icon="el-icon-edit" size="mini" circle
                      @click="handleEdit(scope.row)"></el-button>
           <el-button type="danger" icon="el-icon-delete" size="mini" circle
-                     @click="handleDelete(scope.row)"></el-button>
+                     @click="openDeleteConfirm(scope.$index,scope.row)"></el-button>
 
         </template>
       </el-table-column>
@@ -100,6 +101,19 @@ export default {
   },
 
   methods: {
+    openDeleteConfirm(i, brand) {
+      let title = '提示';
+      let message = '此操作将永久删除【' + brand.name + '】品牌，是否继续？';
+      this.$confirm(message, title, {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.handleDelete(i, brand);
+      }).catch(() => {
+      });
+    },
+
     loadAlbumList() {
       console.log("loadBrandList....");
       let url = 'http://127.0.0.1:8081/brand';
@@ -116,12 +130,13 @@ export default {
     handleEdit(brand) {
 
     },
-    handleDelete(brand) {
+    handleDelete(i, brand) {
       let url = 'http://127.0.0.1:8081/brand/delById/' + brand.id;
       this.axios.get(url).then((res) => {
         if (res.data.state == 20000) {
+          this.brandData.splice(i, 1)
           this.$message.success('删除成功');
-          location.reload();
+          // location.reload();
         }
 
       })
