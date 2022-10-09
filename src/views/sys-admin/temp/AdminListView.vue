@@ -53,7 +53,7 @@ export default {
   methods: {
     openDeleteConfirm(i,admin) {
       let title = '提示';
-      let message = '此操作将永久删除【' + admin.name + '】管理员，是否继续？';
+      let message = '此操作将永久删除【' + admin.username + '】管理员，是否继续？';
       this.$confirm(message, title, {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
