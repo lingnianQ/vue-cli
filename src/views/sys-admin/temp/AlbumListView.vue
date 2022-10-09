@@ -2,7 +2,8 @@
   <div>
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/sys-admin' } ">
-        <i class="el-icon-s-promotion"></i>后台管理
+        <i class="el-icon-s-promotion"></i>
+        后台管理
       </el-breadcrumb-item>
       <el-breadcrumb-item>
         相册列表
@@ -10,28 +11,12 @@
     </el-breadcrumb>
     <el-divider></el-divider>
 
-    <el-table
-        :data="albumData"
-        border
-        style="width: 100%">
-      <el-table-column
-          type="index"
-          label="ID"
-          width="180">
+    <el-table :data="albumData" border style="width: 100%">
+      <el-table-column type="index" label="ID" width="180"></el-table-column>
+      <el-table-column prop="name" label="相册名称" width="180"></el-table-column>
+      <el-table-column prop="description" label="相册简介" width="180">
       </el-table-column>
-      <el-table-column
-          prop="name"
-          label="相册名称"
-          width="180">
-      </el-table-column>
-      <el-table-column
-          prop="description"
-          label="相册简介"
-          width="180">
-      </el-table-column>
-      <el-table-column
-          prop="sort"
-          label="自定义排序序号">
+      <el-table-column prop="sort" label="自定义排序序号">
       </el-table-column>
 
       <el-table-column label="操作">
@@ -40,7 +25,6 @@
                      @click="handleEdit(scope.row)"></el-button>
           <el-button type="danger" icon="el-icon-delete" size="mini" circle
                      @click="openDeleteConfirm(scope.$index,scope.row)"></el-button>
-
         </template>
       </el-table-column>
     </el-table>

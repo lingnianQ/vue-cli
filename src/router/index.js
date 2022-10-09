@@ -29,6 +29,13 @@ const routes = [
                 path: '/sys-admin/temp/brand/list',
                 component: () => import('../views/sys-admin/temp/BrandListView')
             },
+            {
+                path: '/sys-admin/temp/attribute-template/list',
+                component: () => import('../views/sys-admin/temp/AttributeTemplateListView')
+            },            {
+                path: '/sys-admin/temp/category/list',
+                component: () => import('../views/sys-admin/temp/CategoryListView')
+            },
         ]
 
     },
