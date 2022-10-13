@@ -22,7 +22,7 @@ export default {
   data() {
     return {
       ruleForm: {
-        username: 'admin',
+        username: 'root',
         password: '123456'
       },
       rules: {
@@ -41,34 +41,38 @@ export default {
   methods: {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
-        if (valid) {
-          let url = 'http://localhost:8086/login';
-          console.log('url = ' + url);
-          console.log('请求参数: ' + this.ruleForm);
-          console.log(this.ruleForm);
-          this.axios.get(url + '?username=' + this.ruleForm.username +
-              '&password=' + this.ruleForm.password).then((res) => {
-                // console.log(res.data);
-                if (res.data.code == 200) {
-                  // console.log('登录成功！');
-                  this.$message({
-                    message: res.data.status,
-                    type: 'success'
-                  });
-                } else if (res.data.code == 404) {
-                  // console.log('登录失败，用户名错误！');
-                  this.$message.error(res.data.status);
-                } else {
-                  // console.log('登录失败，密码错误！');
-                  this.$message.error(res.data.status);
-                }
-              }
-          );
-        } else {
-          console.log('error submit!!');
-          return false;
-        }
-      });
+            if (valid) {
+              let url = 'http://localhost:8082/admins/login';
+
+              let formData = this.qs.stringify(this.ruleForm);
+
+              this.axios.post(url, formData).then((res) => {
+                    // console.log(res.data);
+                    if (res.data.state == 20000) {
+                      // console.log('登录成功！');
+                      this.$message({
+                        message: res.data.message,
+                        type: 'success'
+                      });
+                      let jwt = res.data.data;
+                      console.log(jwt);
+                      localStorage.setItem('jwt', jwt);
+
+                      // let localJwt = localStorage.getItem('jwt');
+                      // console.log(localJwt);
+                    } else {
+                      // console.log('登录失败，用户名错误！');
+                      this.$message.error(res.data.message);
+                    }
+                  }
+              );
+            } else {
+              console.log('error submit!!');
+              return false;
+            }
+          }
+      )
+      ;
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
