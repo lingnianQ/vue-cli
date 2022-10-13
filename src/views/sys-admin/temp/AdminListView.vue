@@ -51,7 +51,7 @@ export default {
     }
   },
   methods: {
-    openDeleteConfirm(i,admin) {
+    openDeleteConfirm(i, admin) {
       let title = '提示';
       let message = '此操作将永久删除【' + admin.username + '】管理员，是否继续？';
       this.$confirm(message, title, {
@@ -68,7 +68,9 @@ export default {
     },
     handleDelete(i, admin) {
       let url = 'http://127.0.0.1:8082/admins/delById/' + admin.id;
-      this.axios.get(url).then((res) => {
+      this.axios
+          .create({'headers': {'Authorization': localStorage.getItem('jwt')}})
+          .get(url).then((res) => {
         if (res.data.state == 20000) {
           // console.log(i)
           this.adminData.splice(i, 1)
@@ -82,7 +84,9 @@ export default {
       console.log('loadAdminList ...');
       let url = 'http://localhost:8082/admins';
       console.log('url = ' + url);
-      this.axios.post(url).then((response) => {
+      this.axios
+          .create({'headers': {'Authorization': localStorage.getItem('jwt')}})
+          .post(url).then((response) => {
         let responseBody = response.data;
         this.$message.success(responseBody.message)
         // console.log(responseBody);
